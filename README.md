@@ -52,4 +52,5 @@ Add more features like property age, amenities, and parking spaces for better pr
 Implement data visualization for trends and insights.
 Deploy the app on a cloud platform like Heroku or AWS.
 
-P.S:**In order for the index.html file to run make sure it is inside a templates folder**
+### P.S: 
+**In order for the index.html file to run make sure it is inside a templates folder**
