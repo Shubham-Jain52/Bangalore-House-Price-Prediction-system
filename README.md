@@ -51,3 +51,5 @@ Cleaned dataset of Bangalore house prices - https://www.kaggle.com/datasets/amit
 Add more features like property age, amenities, and parking spaces for better predictions.
 Implement data visualization for trends and insights.
 Deploy the app on a cloud platform like Heroku or AWS.
+
+P.S:**In order for the index.html file to run make sure it is inside a templates folder**
