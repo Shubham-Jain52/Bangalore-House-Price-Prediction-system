@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Bangalore House Price Prediction</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .btn-center {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="card" style="width: 100%; height: 100%; margin: 50px;">
+          <div class="card_header" style="text-align: center;">
+            <h1>Welcome to the Bangalore House Price Predictor</h1>
+          </div>
+          <div class="card-body">
+            <form id="predictionForm">
+              <h5 style="text-align: center;margin: 2rem;">
+                Want to predict the price of your new house in Bangalore? Fill out the details below:
+              </h5>
+              <div class="row">
+                <div class="col-md-6 form-group" style="text-align: center;">
+                  <label><b>Select the Location:</b></label>
+                  <select class="form-control" id="Location" name="Location" required>
+                    {% for location in locations %}
+                      <option value="{{location}}">{{location}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-6 form-group" style="text-align: center;">
+                  <label><b>Enter BHK:</b></label>
+                  <input type="text" class="form-control" name="BHK" id="BHK" placeholder="Enter the number of BHK" required>
+                </div>
+                <div class="col-md-6 form-group" style="text-align: center;">
+                  <label><b>Enter Bathrooms:</b></label>
+                  <input type="text" class="form-control" name="bathrooms" id="bathrooms" placeholder="Enter the number of Bathrooms" required>
+                </div>
+                <div class="col-md-6 form-group" style="text-align: center;">
+                  <label><b>Enter Square Feet:</b></label>
+                  <input type="text" class="form-control" name="sqft" id="sqft" placeholder="Enter the number of SQft" required>
+                </div>
+                <div class="col-md-12 form-group btn-center">
+                  <button class="btn btn-primary" type="submit">Predict Price</button>
+                </div>
+              </div>
+            </form>
+            <br>
+            <div class="col-md-12" style="text-align: center;">
+              <h3><span id="prediction"></span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('predictionForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        fetch('/predict', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('prediction').innerText = data.prediction;
+        })
+        .catch(error => {
+          document.getElementById('prediction').innerText = 'Error: Could not predict price.';
+          console.error('Error:', error);
+        });
+
+        document.getElementById('prediction').innerText = 'Wait Predicting Price! .....';
+      });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
