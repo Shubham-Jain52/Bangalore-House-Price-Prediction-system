@@ -37,11 +37,15 @@ Cleaned dataset of Bangalore house prices - https://www.kaggle.com/datasets/amit
 
 ## Prerequisites:
 
-**Python 3.6 or higher
-Flask
-Scikit-learn
-Pandas
-Numpy**
+**Python 3.6 or higher**
+
+**Flask**
+
+**Scikit-learn**
+
+**Pandas**
+
+**Numpy**
 
 ## Future Enhancements
 Add more features like property age, amenities, and parking spaces for better predictions.
